@@ -22,9 +22,9 @@
   "devDependencies": { "tsup": "^8.0.0", "typescript": "^5.0.0" },
   "keywords": ["memo", "memoize", "cache", "lru", "ttl", "weakmap", "performance"],
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/philiprehberger/ts-memo-ts.git" },
-  "homepage": "https://github.com/philiprehberger/ts-memo-ts#readme",
-  "bugs": { "url": "https://github.com/philiprehberger/ts-memo-ts/issues" },
+  "repository": { "type": "git", "url": "git+https://github.com/philiprehberger/ts-memo.git" },
+  "homepage": "https://github.com/philiprehberger/ts-memo#readme",
+  "bugs": { "url": "https://github.com/philiprehberger/ts-memo/issues" },
   "author": "Philip Rehberger",
   "engines": { "node": ">=18.0.0" },
   "sideEffects": false

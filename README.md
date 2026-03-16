@@ -1,21 +1,21 @@
-# @philiprehberger/memo-ts
+# @philiprehberger/ts-memo
 
-[![CI](https://github.com/philiprehberger/memo-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/memo-ts/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@philiprehberger/memo-ts.svg)](https://www.npmjs.com/package/@philiprehberger/memo-ts)
-[![License](https://img.shields.io/github/license/philiprehberger/memo-ts)](LICENSE)
+[![CI](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@philiprehberger/ts-memo.svg)](https://www.npmjs.com/package/@philiprehberger/ts-memo)
+[![License](https://img.shields.io/github/license/philiprehberger/ts-memo)](LICENSE)
 
 Advanced memoization with TTL, LRU, and WeakMap support.
 
 ## Installation
 
 ```bash
-npm install @philiprehberger/memo-ts
+npm install @philiprehberger/ts-memo
 ```
 
 ## Usage
 
 ```ts
-import { memo, weakMemo } from '@philiprehberger/memo-ts';
+import { memo, weakMemo } from '@philiprehberger/ts-memo';
 
 const getUser = memo(fetchUser, { ttl: '5m', maxSize: 1000 });
 const user = await getUser('123'); // cached

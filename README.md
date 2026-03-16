@@ -1,5 +1,9 @@
 # @philiprehberger/memo-ts
 
+[![CI](https://github.com/philiprehberger/memo-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/memo-ts/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@philiprehberger/memo-ts.svg)](https://www.npmjs.com/package/@philiprehberger/memo-ts)
+[![License](https://img.shields.io/github/license/philiprehberger/memo-ts)](LICENSE)
+
 Advanced memoization with TTL, LRU, and WeakMap support.
 
 ## Installation

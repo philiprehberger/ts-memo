@@ -1,6 +1,6 @@
 # @philiprehberger/ts-memo
 
-[![CI](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/ts-memo/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/ts-memo/actions/workflows/publish.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/ts-memo.svg)](https://www.npmjs.com/package/@philiprehberger/ts-memo)
 [![License](https://img.shields.io/github/license/philiprehberger/ts-memo)](LICENSE)
 
@@ -34,6 +34,15 @@ const getNodeData = weakMemo((node: HTMLElement) => expensiveCalc(node));
 | `.clear()` | Clear all cached entries |
 | `.delete(...args)` | Remove specific cache entry |
 | `.size` | Number of cached entries |
+
+
+## Development
+
+```bash
+npm install
+npm run build
+npm test
+```
 
 ## License
 

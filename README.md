@@ -1,6 +1,6 @@
 # @philiprehberger/memo-ts
 
-[![CI](https://github.com/philiprehberger/ts-memo/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/ts-memo/actions/workflows/publish.yml)
+[![CI](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/memo-ts.svg)](https://www.npmjs.com/package/@philiprehberger/memo-ts)
 [![License](https://img.shields.io/github/license/philiprehberger/ts-memo)](LICENSE)
 

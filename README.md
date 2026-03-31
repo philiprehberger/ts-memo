@@ -1,9 +1,8 @@
 # @philiprehberger/memo-ts
 
-[![CI](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/memo-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/memo-ts/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/memo-ts.svg)](https://www.npmjs.com/package/@philiprehberger/memo-ts)
-[![License](https://img.shields.io/github/license/philiprehberger/ts-memo)](LICENSE)
-[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/memo-ts)](https://github.com/philiprehberger/memo-ts/commits/main)
 
 Advanced memoization with TTL, LRU, and WeakMap support
 
@@ -36,7 +35,6 @@ const getNodeData = weakMemo((node: HTMLElement) => expensiveCalc(node));
 | `.delete(...args)` | Remove specific cache entry |
 | `.size` | Number of cached entries |
 
-
 ## Development
 
 ```bash
@@ -45,6 +43,24 @@ npm run build
 npm test
 ```
 
+## Support
+
+If you find this project useful:
+
+⭐ [Star the repo](https://github.com/philiprehberger/memo-ts)
+
+🐛 [Report issues](https://github.com/philiprehberger/memo-ts/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+
+💡 [Suggest features](https://github.com/philiprehberger/memo-ts/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+❤️ [Sponsor development](https://github.com/sponsors/philiprehberger)
+
+🌐 [All Open Source Projects](https://philiprehberger.com/open-source-packages)
+
+💻 [GitHub Profile](https://github.com/philiprehberger)
+
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/philiprehberger)
+
 ## License
 
-MIT
+[MIT](LICENSE)

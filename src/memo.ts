@@ -1,4 +1,4 @@
-import type { MemoOptions, MemoControls } from './types';
+import type { MemoOptions, MemoControls, CacheStats } from './types';
 import { CacheMap } from './cache-map';
 import { defaultKey } from './key';
 
@@ -19,11 +19,12 @@ function parseTtl(ttl: number | string | undefined): number | null {
 
 export function memo<T extends (...args: any[]) => any>(
   fn: T,
-  options: MemoOptions<Parameters<T>> = {},
+  options: MemoOptions<Parameters<T>, ReturnType<T>> = {},
 ): T & MemoControls {
   const ttl = parseTtl(options.ttl);
   const cache = new CacheMap<any>(options.maxSize, ttl);
   const keyFn = options.key ?? defaultKey;
+  const shouldCache = options.shouldCache;
 
   const memoized = function (this: unknown, ...args: any[]): any {
     const k = (keyFn as (...a: any[]) => string)(...args);
@@ -33,8 +34,23 @@ export function memo<T extends (...args: any[]) => any>(
     const result = fn.apply(this, args);
 
     if (result instanceof Promise) {
-      cache.set(k, result);
-      result.catch(() => cache.delete(k));
+      const tracked = result.then(
+        (resolved: any) => {
+          if (shouldCache && !shouldCache(resolved)) {
+            cache.delete(k);
+          }
+          return resolved;
+        },
+        (err: any) => {
+          cache.delete(k);
+          throw err;
+        },
+      );
+      cache.set(k, tracked);
+      return tracked;
+    }
+
+    if (shouldCache && !shouldCache(result)) {
       return result;
     }
 
@@ -44,6 +60,7 @@ export function memo<T extends (...args: any[]) => any>(
 
   memoized.clear = () => cache.clear();
   memoized.delete = (...args: unknown[]) => cache.delete(defaultKey(...args));
+  memoized.stats = (): CacheStats => cache.stats();
   Object.defineProperty(memoized, 'size', { get: () => cache.size });
 
   return memoized;

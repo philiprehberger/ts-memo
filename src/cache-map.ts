@@ -1,3 +1,5 @@
+import type { CacheStats } from './types';
+
 interface CacheEntry<V> {
   value: V;
   expiresAt: number | null;
@@ -12,6 +14,10 @@ export class CacheMap<V> {
   private readonly maxSize: number;
   private readonly ttl: number | null;
 
+  private _hits = 0;
+  private _misses = 0;
+  private _evictions = 0;
+
   constructor(maxSize: number = Infinity, ttl: number | null = null) {
     this.maxSize = maxSize;
     this.ttl = ttl;
@@ -21,13 +27,28 @@ export class CacheMap<V> {
     return this.map.size;
   }
 
+  stats(): CacheStats {
+    return {
+      hits: this._hits,
+      misses: this._misses,
+      evictions: this._evictions,
+      size: this.map.size,
+    };
+  }
+
   get(key: string): V | undefined {
     const entry = this.map.get(key);
-    if (!entry) return undefined;
+    if (!entry) {
+      this._misses++;
+      return undefined;
+    }
     if (entry.expiresAt !== null && Date.now() > entry.expiresAt) {
+      this._misses++;
+      this._evictions++;
       this.delete(key);
       return undefined;
     }
+    this._hits++;
     this.moveToHead(key);
     return entry.value;
   }
@@ -42,6 +63,7 @@ export class CacheMap<V> {
     }
 
     if (this.map.size >= this.maxSize && this.tail) {
+      this._evictions++;
       this.delete(this.tail);
     }
 
@@ -78,6 +100,12 @@ export class CacheMap<V> {
     this.map.clear();
     this.head = null;
     this.tail = null;
+  }
+
+  resetStats(): void {
+    this._hits = 0;
+    this._misses = 0;
+    this._evictions = 0;
   }
 
   private moveToHead(key: string): void {

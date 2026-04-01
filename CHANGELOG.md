@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Add cache statistics with hits, misses, evictions, and size tracking
+- Add conditional memoization with shouldCache predicate
+- Add async-aware invalidation for rejected promises
+- Add LRU eviction when maxSize is reached
+
 ## 0.1.4
 
 - Standardize README to 3-badge format with emoji Support section

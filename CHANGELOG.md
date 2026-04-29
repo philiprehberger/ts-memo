@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0
+
+- Add `peek(...args)` to read a cached value without affecting LRU recency or stats
+- Add `has(...args)` to check cache membership without affecting LRU recency
+- Honor a custom `key` option in `delete()` (previously fell back to the default key function)
+- Run `npm test` in the publish workflow before publishing to npm
+- Fix README badge and Support links to point to the actual `ts-memo` repository
+
 ## 0.2.0
 
 - Add cache statistics with hits, misses, evictions, and size tracking

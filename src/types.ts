@@ -15,6 +15,8 @@ export interface CacheStats {
 export interface MemoControls {
   clear(): void;
   delete(...args: unknown[]): boolean;
+  peek(...args: unknown[]): unknown;
+  has(...args: unknown[]): boolean;
   stats(): CacheStats;
   readonly size: number;
 }

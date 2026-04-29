@@ -53,6 +53,20 @@ export class CacheMap<V> {
     return entry.value;
   }
 
+  peek(key: string): V | undefined {
+    const entry = this.map.get(key);
+    if (!entry) return undefined;
+    if (entry.expiresAt !== null && Date.now() > entry.expiresAt) return undefined;
+    return entry.value;
+  }
+
+  has(key: string): boolean {
+    const entry = this.map.get(key);
+    if (!entry) return false;
+    if (entry.expiresAt !== null && Date.now() > entry.expiresAt) return false;
+    return true;
+  }
+
   set(key: string, value: V): void {
     if (this.map.has(key)) {
       const entry = this.map.get(key)!;

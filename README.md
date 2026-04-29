@@ -1,21 +1,21 @@
-# @philiprehberger/memo-ts
+# @philiprehberger/ts-memo
 
-[![CI](https://github.com/philiprehberger/memo-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/memo-ts/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@philiprehberger/memo-ts.svg)](https://www.npmjs.com/package/@philiprehberger/memo-ts)
-[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/memo-ts)](https://github.com/philiprehberger/memo-ts/commits/main)
+[![CI](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-memo/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@philiprehberger/ts-memo.svg)](https://www.npmjs.com/package/@philiprehberger/ts-memo)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/ts-memo)](https://github.com/philiprehberger/ts-memo/commits/main)
 
 Advanced memoization with TTL, LRU, and WeakMap support
 
 ## Installation
 
 ```bash
-npm install @philiprehberger/memo-ts
+npm install @philiprehberger/ts-memo
 ```
 
 ## Usage
 
 ```ts
-import { memo, weakMemo } from '@philiprehberger/memo-ts';
+import { memo, weakMemo } from '@philiprehberger/ts-memo';
 
 const getUser = memo(fetchUser, { ttl: '5m', maxSize: 1000 });
 const user = await getUser('123'); // cached
@@ -79,6 +79,17 @@ cached('a'); // hit, promotes a -> cache: [a, c, b]
 cached('d'); // evicts 'b' (LRU) -> cache: [d, a, c]
 ```
 
+### Peek without Affecting LRU
+
+```ts
+const cached = memo(expensiveFn, { maxSize: 3 });
+
+cached('a');
+cached('b');
+cached.peek('a'); // returns the cached value, but does not promote 'a' or count as a hit
+cached.has('b'); // true
+```
+
 ## API
 
 | Function | Description |
@@ -87,6 +98,8 @@ cached('d'); // evicts 'b' (LRU) -> cache: [d, a, c]
 | `weakMemo(fn)` | WeakMap-based memoization |
 | `.clear()` | Clear all cached entries |
 | `.delete(...args)` | Remove specific cache entry |
+| `.peek(...args)` | Read a cached value without affecting LRU recency or stats |
+| `.has(...args)` | Check whether a value is cached without affecting LRU recency |
 | `.stats()` | Return `{ hits, misses, evictions, size }` |
 | `.size` | Number of cached entries |
 
@@ -111,11 +124,11 @@ npm test
 
 If you find this project useful:
 
-⭐ [Star the repo](https://github.com/philiprehberger/memo-ts)
+⭐ [Star the repo](https://github.com/philiprehberger/ts-memo)
 
-🐛 [Report issues](https://github.com/philiprehberger/memo-ts/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+🐛 [Report issues](https://github.com/philiprehberger/ts-memo/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
 
-💡 [Suggest features](https://github.com/philiprehberger/memo-ts/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+💡 [Suggest features](https://github.com/philiprehberger/ts-memo/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
 
 ❤️ [Sponsor development](https://github.com/sponsors/philiprehberger)
 

@@ -59,7 +59,9 @@ export function memo<T extends (...args: any[]) => any>(
   } as T & MemoControls;
 
   memoized.clear = () => cache.clear();
-  memoized.delete = (...args: unknown[]) => cache.delete(defaultKey(...args));
+  memoized.delete = (...args: unknown[]) => cache.delete((keyFn as (...a: any[]) => string)(...args));
+  memoized.peek = (...args: unknown[]) => cache.peek((keyFn as (...a: any[]) => string)(...args));
+  memoized.has = (...args: unknown[]) => cache.has((keyFn as (...a: any[]) => string)(...args));
   memoized.stats = (): CacheStats => cache.stats();
   Object.defineProperty(memoized, 'size', { get: () => cache.size });
 
